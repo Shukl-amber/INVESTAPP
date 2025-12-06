@@ -1,17 +1,32 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Testimonials() {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [isMobile, setIsMobile] = useState(false);
+    const [scrollDistance, setScrollDistance] = useState(0);
+    const carouselRef = React.useRef<HTMLDivElement>(null);
     
     useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
+        const calculateScrollDistance = () => {
+            if (carouselRef.current) {
+                const firstCard = carouselRef.current.querySelector('div[class*="border"]') as HTMLElement;
+                if (firstCard) {
+                    const cardWidth = firstCard.offsetWidth;
+                    const computedStyle = window.getComputedStyle(carouselRef.current);
+                    const gap = parseFloat(computedStyle.gap) || 0;
+                    setScrollDistance(cardWidth + gap);
+                }
+            }
+        };
+        
+        // Calculate on mount and after a short delay to ensure rendering
+        setTimeout(calculateScrollDistance, 100);
+        calculateScrollDistance();
+        
+        window.addEventListener('resize', calculateScrollDistance);
+        return () => window.removeEventListener('resize', calculateScrollDistance);
     }, []);
 
     const stats = [
@@ -46,23 +61,23 @@ export default function Testimonials() {
     };
 
     return (
-        <section id="testimonials" className="flex flex-col gap-10 py-20 w-full overflow-x-hidden">
+        <section id="testimonials" className="flex flex-col gap-8 md:gap-9 lg:gap-10 w-full overflow-x-hidden">
             {/* Title Section */}
             <div className="flex flex-col gap-2 items-start w-full max-w-2xl">
-                <h2 className="text-center font-serif font-bold text-2xl lg:text-4xl leading-[126%] text-[#080808]">Testimonials</h2>
-                <p className="max-w-3xl font-display text-sm lg:text-lg font-light leading-[157%] text-black">
+                <h2 className="text-center font-serif font-bold text-2xl md:text-3xl lg:text-4xl leading-[126%] text-[#080808]">Testimonials</h2>
+                <p className="max-w-3xl font-display text-sm md:text-base lg:text-lg font-light leading-[157%] text-black">
                     Bridge the gap between academic learning and practical financial expertise through our gamified internship ecosystem.
                 </p>
             </div>
 
             {/* Content Section */}
-            <div className="flex flex-col lg:flex-row gap-12 items-start w-full overflow-x-hidden">
+            <div className="flex flex-col lg:flex-row gap-8 md:gap-10 lg:gap-12 items-start w-full overflow-x-hidden">
                 {/* Stats Cards */}
-                <div className="flex flex-row lg:flex-col gap-3 w-full lg:w-64 shrink-0">
+                <div className="flex flex-row lg:flex-col gap-3 w-full md:w-auto lg:w-64 shrink-0">
                     {stats.map((stat, index) => (
-                        <div key={index} className="bg-[#2C2E8C] lg:bg-[#FFCA56] h-fit rounded-xl lg:rounded-3xl px-4 py-3 flex flex-col text-white lg:text-black w-full">
-                            <p className="font-sans font-semibold text-base lg:text-3xl leading-[1.6] max-lg:tracking-wider">{stat.value}</p>
-                            <p className="font-sans font-normal text-[12px] lg:text-sm leading-[1.6] ">{stat.label}</p>
+                        <div key={index} className="bg-[#2C2E8C] lg:bg-[#FFCA56] h-fit rounded-xl md:rounded-2xl lg:rounded-3xl px-3 md:px-4 py-2.5 md:py-3 flex flex-col text-white lg:text-black w-full md:w-auto">
+                            <p className="font-sans font-semibold text-base md:text-xl lg:text-2xl xl:text-3xl leading-[1.6] max-lg:tracking-wider">{stat.value}</p>
+                            <p className="font-sans font-normal text-[12px] md:text-xs lg:text-sm leading-[1.6] ">{stat.label}</p>
                         </div>
                     ))}
                 </div>
@@ -74,16 +89,17 @@ export default function Testimonials() {
                     
                     {/* Cards Container */}
                     <div 
-                        className="flex gap-6 items-center transition-transform duration-500 ease-in-out"
-                        style={{ transform: `translateX(-${currentIndex * (isMobile ? 383 : 670)}px)` }}
+                        ref={carouselRef}
+                        className="flex gap-4 md:gap-5 lg:gap-6 items-center transition-transform duration-500 ease-in-out"
+                        style={{ transform: `translateX(-${currentIndex * scrollDistance}px)` }}
                     >
                         {testimonials.map((testimonial, index) => (
                             <div 
                                 key={index}
-                                className="border border-[gainsboro] border-solid rounded-[20px] p-3 flex flex-row gap-[19px] shrink-0"
+                                className="border border-[gainsboro] border-solid rounded-2xl md:rounded-[20px] p-2.5 md:p-3 flex flex-row gap-4 md:gap-[19px] shrink-0"
                             >
                                 {/* Image - responsive sizing */}
-                                <div className="w-[140px] h-[235px] lg:w-72 lg:h-80 rounded-[20px] overflow-hidden shrink-0">
+                                <div className="w-[140px] h-[235px] md:w-[180px] md:h-[280px] lg:w-60 lg:h-[320px] xl:w-72 xl:h-80 rounded-2xl md:rounded-[20px] overflow-hidden shrink-0">
                                     <Image 
                                         src={testimonial.image} 
                                         alt={testimonial.name} 
@@ -93,12 +109,12 @@ export default function Testimonials() {
                                     />
                                 </div>
                                 {/* Content - responsive sizing */}
-                                <div className="flex flex-col gap-[22px] lg:gap-6 w-[174px] lg:w-80 font-display">
+                                <div className="flex flex-col gap-5 md:gap-6 w-[174px] md:w-[230px] lg:w-72 xl:w-80 font-display">
                                     <div className="flex flex-col gap-0.5 capitalize">
-                                        <p className="text-base lg:text-2xl text-black leading-normal">{testimonial.name}</p>
-                                        <p className="text-xs lg:text-base text-[#555555] leading-normal">{testimonial.role}</p>
+                                        <p className="text-base md:text-lg lg:text-xl xl:text-2xl text-black leading-normal">{testimonial.name}</p>
+                                        <p className="text-xs md:text-sm lg:text-base text-[#555555] leading-normal">{testimonial.role}</p>
                                     </div>
-                                    <p className="text-xs lg:text-[17px] text-black leading-[1.45] lg:leading-8">
+                                    <p className="text-xs md:text-sm lg:text-base xl:text-[17px] text-black leading-[1.45] md:leading-[1.5] lg:leading-7 xl:leading-8">
                                         {testimonial.content}
                                     </p>
                                 </div>

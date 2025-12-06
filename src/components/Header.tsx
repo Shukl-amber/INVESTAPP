@@ -39,17 +39,17 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full bg-white border-b border-gray-100 top-0 font-sans px-6 lg:px-30">
+    <header className="w-full bg-white border-b border-gray-100 top-0 font-sans px-4 md:px-6 lg:px-16 xl:px-30">
       <div className="mx-auto">
-        <div className="flex flex-row justify-end items-center py-4">
+        <div className="flex flex-row justify-end items-center py-3 md:py-4">
           {/* Logo or Brand (optional) */}
           <div className="shrink-0">
             {/* <div className="font-bold text-lg text-gray-900">InvestApp</div> */}
           </div>
 
           {/* Desktop Navigation */}
-          <div className='flex flex-row items-center gap-8'>
-            <nav className="hidden lg:flex items-center gap-8">
+          <div className='flex flex-row items-center gap-4 md:gap-6 lg:gap-8'>
+            <nav className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8">
                 {navItems.map((item) => (
                 <a
                     key={item.text}
@@ -67,14 +67,14 @@ const Header = () => {
             </nav>
 
             {/* Desktop Login Button */}
-            <div className="hidden lg:flex items-center">
+            <div className="hidden md:flex items-center">
                 <Button label="Log in" />
             </div>
           </div>
           
 
           {/* Mobile Hamburger */}
-          <div className="lg:hidden flex items-center gap-4">
+          <div className="md:hidden flex items-center gap-4">
             <button
               className="text-gray-900 focus:outline-none hover:text-gray-600 transition-colors"
               aria-label="Open menu"
@@ -96,7 +96,7 @@ const Header = () => {
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-white z-40 flex flex-col lg:hidden">
+        <div className="fixed inset-0 bg-white z-40 flex flex-col md:hidden">
           <div className="px-4 sm:px-6 py-4 border-b border-gray-100 flex justify-end items-center">
             <button
               className="text-gray-500 hover:text-gray-900 transition-colors"

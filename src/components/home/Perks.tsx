@@ -9,18 +9,18 @@ export default function Perks() {
         ]
 
     return (
-        <section id="perks" className="w-full flex flex-col gap-16">
+        <section id="perks" className="w-full flex flex-col gap-10 md:gap-12 lg:gap-16">
             <div className="justify-center items-center flex flex-col gap-2">
-                <h2 className="text-center font-serif font-bold text-2xl lg:text-4xl leading-[126%]">Perks of Program</h2>
-                <p className="max-w-3xl font-display text-center text-sm lg:text-lg font-light leading-[157%]">Bridge the gap between academic learning and practical financial expertise through our gamified internship ecosystem.</p>
+                <h2 className="text-center font-serif font-bold text-2xl md:text-3xl lg:text-4xl leading-[126%]">Perks of Program</h2>
+                <p className="max-w-3xl font-display text-center text-sm md:text-base lg:text-lg font-light leading-[157%]">Bridge the gap between academic learning and practical financial expertise through our gamified internship ecosystem.</p>
             </div>
-            <div className="grid lg:grid-cols-3 grid-cols-1 justify-between items-center gap-8 lg:gap-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between items-center gap-6 md:gap-8 lg:gap-12 xl:gap-16">
                 {perks.map((perk, index) => (
-                    <div key={index} className="relative overflow-hidden rounded-3xl p-6 flex flex-col gap-4 min-h-60 lg:aspect-square w-full items-start justify-start" style={{ backgroundColor: perk.bg }}>
-                        <div className="font-display font-semibold text-xl lg:text-2xl text-black leading-[126%] w-full lg:w-[70%]">{perk.title}</div>
-                        <div className="font-display font-normal text-sm lg:text-base leading-[142%] text-[#393939] w-[70%]">{perk.description}</div>
-                        <Image src={perk.icon} alt={perk.title} className="absolute bottom-0 right-0 max-lg:hidden" width={200} height={200} />
-                        <Image src={perk.icon} alt={perk.title} className={`absolute right-0 lg:hidden ${index !== 0 ? '-bottom-8' : 'bottom-0'}`} width={160} height={160} />
+                    <div key={index} className="relative overflow-hidden rounded-2xl md:rounded-3xl p-5 md:p-6 flex flex-col gap-3 md:gap-4 min-h-52 md:min-h-56 lg:min-h-60 lg:aspect-square w-full items-start justify-start" style={{ backgroundColor: perk.bg }}>
+                        <div className="font-display font-semibold text-lg md:text-xl lg:text-2xl text-black leading-[126%] w-full md:w-[80%] lg:w-[70%]">{perk.title}</div>
+                        <div className="font-display font-normal text-sm md:text-sm lg:text-base leading-[142%] text-[#393939] w-[70%]">{perk.description}</div>
+                        <Image src={perk.icon} alt={perk.title} className="absolute bottom-0 right-0 max-md:hidden" width={180} height={180} />
+                        <Image src={perk.icon} alt={perk.title} className={`absolute right-0 md:hidden ${index !== 0 ? '-bottom-8' : 'bottom-0'}`} width={160} height={160} />
                     </div>
                 ))}
             </div>
