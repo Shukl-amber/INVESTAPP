@@ -4,6 +4,7 @@ import ProfileLeaderboard from "../../components/ProfileLeaderboard";
 import ProfileTasks from "../../components/ProfileTasks";
 import RewardsPanel from "../../components/RewardsPanel";
 import ReferralTracking from "../../components/ReferralTracking";
+import ProfileFooter from "../../components/ProfileFooter";
 
 export default function ProfilePage() {
   return (
@@ -15,6 +16,7 @@ export default function ProfilePage() {
         <RewardsPanel />
         <ReferralTracking />
         <MilestoneCard />
+        <ProfileFooter />
       </div>
     </>
   );
