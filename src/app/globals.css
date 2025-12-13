@@ -1,3 +1,20 @@
+/* ProfileHero custom styles */
+.glass-button {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: background 0.2s;
+}
+.glass-button:hover {
+  background: rgba(255,255,255,0.6);
+}
+
+.profile-hero-bg {
+  background-image: url('/profile-bg.webp');
+  background-size: cover;
+  background-position: center;
+}
 @import "tailwindcss";
 
 :root {
