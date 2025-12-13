@@ -80,6 +80,11 @@ const userData = {
       "referrals": 150,
       "instaPosts": 10,
       "seminars": 3
+    },
+    "milestoneLogoUrlMap": {
+      "Campus Newbie": "/icons/student.svg",
+      "Campus Expert": "/icons/lightning.svg",
+      "Campus Torchbearer": "/icons/fire.svg"
     }
   }
 };
