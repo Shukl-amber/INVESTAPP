@@ -37,6 +37,12 @@ const userData = {
       "description": "50 Referrals",
       "dueInDays": 12,
       "status": "pending"
+    },
+    {
+      "category": "Recruit & Rise",
+      "description": "50 Referrals",
+      "dueInDays": 12,
+      "status": "pending"
     }
   ],
   "rewards": {
