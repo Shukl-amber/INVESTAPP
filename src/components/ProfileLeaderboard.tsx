@@ -201,7 +201,16 @@ export default function ProfileLeaderboard() {
         {/* Leaderboard List Card - body fills card and scrolls after X entries (desktop: fill and scroll) */}
         <div className={"card-body flex-1 bg-white rounded-xl pt-3 px-3 pb-0 shadow-sm border border-gray-100 max-h-[168px] overflow-y-auto md:max-h-[300px] md:overflow-y-auto"} style={{ minHeight: 0 }}>
           {leaderboard.map((user) => (
-            <div key={user.rank} ref={user.name === userData.name ? userRowRef : undefined} className={`flex items-center justify-between py-1 px-3 rounded-lg mb-1 ${user.name === userData.name ? "bg-[#e6edff] border-2 border-[#2C2E8C]" : ""}`}>
+            <div
+              key={user.rank}
+              ref={user.name === userData.name ? userRowRef : undefined}
+              className={`flex items-center justify-between py-2 px-3 rounded-lg mb-2 ${
+                user.name === userData.name
+                  ? "bg-[#FFD66A] text-black shadow-md"
+                  : "bg-white"
+              }`}
+              style={user.name === userData.name ? { border: 'none' } : undefined}
+            >
               <div className="flex items-center gap-3">
                 <span className="text-[#24218F] text-sm font-semibold">#{user.rank}</span>
                 <Image src={user.avatar} alt={user.name} width={32} height={32} className="rounded-full border-2 border-white object-cover" />

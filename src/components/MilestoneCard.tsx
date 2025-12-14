@@ -18,10 +18,13 @@ export default function MilestoneCard() {
                 const iconUrl =
                   (milestones as any).milestoneLogoUrlMap?.[level] ??
                   "/icons/Student.svg";
+                const words = level.split(" ");
+                const firstWord = words[0] || level;
+                const restWords = words.length > 1 ? words.slice(1).join(" ") : "";
                 return (
                   <button
                     key={`${level}-${idx}`}
-                      className={`flex-shrink-0 flex flex-col items-center justify-center gap-2 h-20 md:h-24 min-w-[86px] md:w-[135px] rounded-2xl cursor-pointer transition-all duration-150 transform overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 ${
+                      className={`flex-shrink-0 flex flex-col items-center justify-center gap-2 h-30 md:h-28 w-[96px] md:w-[135px] rounded-2xl cursor-pointer transition-all duration-150 transform overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 ${
                         isActive
                           ? "bg-[#231f7a] text-white shadow-[0_8px_20px_rgba(35,31,122,0.14)]"
                           : "bg-[#F6F6FB] text-[#221B7A]"
@@ -33,11 +36,19 @@ export default function MilestoneCard() {
                     <img
                       src={iconUrl}
                       alt={level + " icon"}
-                      className="w-10 h-8 mb-1 flex-shrink-0 object-contain"
+                      className="w-12 h-10 mb-1 flex-shrink-0 object-contain md:w-10 md:h-8"
                       draggable={false}
                     />
-                    <span className={`text-sm font-medium text-center w-full milestone-item-label`} style={{ whiteSpace: 'nowrap', fontSize: '12px', lineHeight: 1.1 }}>
-                      {level}
+                    <span className={`text-base md:text-sm font-medium text-center w-full milestone-item-label`} style={{ whiteSpace: 'nowrap', lineHeight: 1.1 }}>
+                      {restWords ? (
+                        <>
+                          <span>{firstWord}</span>
+                          <span className="md:hidden"><br />{restWords}</span>
+                          <span className="hidden md:inline"> {restWords}</span>
+                        </>
+                      ) : (
+                        level
+                      )}
                     </span>
                   </button>
                 );
@@ -89,7 +100,7 @@ function MilestoneItem({
         className={`${done ? "w-5 h-5" : "w-5 h-5"} flex-shrink-0`}
         draggable={false}
       />
-      <span className="font-medium text-gray-900 milestone-item-label text-xs">
+      <span className="font-medium text-gray-900 milestone-item-label text-sm md:text-xs">
         {label}
       </span>
     </li>

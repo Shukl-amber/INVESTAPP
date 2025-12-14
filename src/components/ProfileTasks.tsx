@@ -36,7 +36,7 @@ export default function ProfileTasks() {
           <h3 className="text-lg font-semibold mb-3">Task</h3>
         </div>
 
-        <div className="card-body flex-1 flex flex-col gap-4 max-h-[530px] overflow-y-auto md:h-[500px] md:overflow-y-auto" style={{ minHeight: 0 }}>
+        <div className="card-body flex-1 flex flex-col gap-4 max-h-[285px] overflow-y-auto md:h-[500px] md:overflow-y-auto" style={{ minHeight: 0 }}>
         {tasks.map((task, i) => {
             const pill =
               pillStyles[task.category] ||
