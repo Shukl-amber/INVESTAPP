@@ -118,7 +118,7 @@ const Header = () => {
           <div className="md:hidden flex items-center gap-4">
             {!isMenuOpen && isLoggedIn && user && (
               <button
-                className="flex items-center px-4 py-1 rounded-full bg-[#f5f7ff] min-w-[64px] focus:outline-none"
+                className="flex items-center px-1 py-0 rounded-full bg-[#f5f7ff] min-w-[64px] focus:outline-none"
                 onClick={() => router.push('/profile')}
                 type="button"
               >

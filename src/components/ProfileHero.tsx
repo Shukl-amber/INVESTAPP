@@ -33,7 +33,7 @@ export default function ProfileHero() {
               </div>
             </div>
             {/* Role label positioned under the ring */}
-            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 px-3 py-1 bg-[#FFCA56] text-black font-bold rounded-full text-sm shadow whitespace-nowrap">
+            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 px-3 py-1 bg-[#FFCA56] text-black font-semibold rounded-full text-sm shadow whitespace-nowrap">
               {userData.role}
             </span>
           </div>
@@ -56,7 +56,6 @@ export default function ProfileHero() {
                 {userData.badges && userData.badges.map((badge, idx) => (
                   <div key={badge.name + idx} className="flex flex-col items-center flex-shrink-0">
                     <img src={badge.icon} alt={badge.name + ' Badge'} className="w-16 h-16" />
-                    <span className="mt-1 text-xs font-bold uppercase text-gray-700">{badge.name}</span>
                   </div>
                 ))}
             </div>

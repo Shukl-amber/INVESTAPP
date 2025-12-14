@@ -17,7 +17,7 @@ const userData = {
     }
   ],
   "leaderboard": {
-    "position": 1
+    "position": 4
   },
   "tasks": [
     {

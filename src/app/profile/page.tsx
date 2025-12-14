@@ -47,11 +47,11 @@ export default function ProfilePage() {
 
               {/* Right: split Milestone and Footer to share the right column space */}
               <div className="flex flex-col gap-6 h-full" style={{ minHeight: 0 }}>
-                <div className="flex-1 overflow-auto" style={{ minHeight: 0 }}>
+                <div className="overflow-y-scroll" style={{ minHeight: 0, flex: '7 1 0' }}>
                   <MilestoneCard />
                 </div>
 
-                <div className="flex-1 overflow-auto" style={{ minHeight: 0 }}>
+                <div className="overflow-y-scroll" style={{ minHeight: 0, flex: '4 1 0' }}>
                   <ProfileFooter />
                 </div>
               </div>

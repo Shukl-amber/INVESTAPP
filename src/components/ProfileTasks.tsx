@@ -22,21 +22,21 @@ export default function ProfileTasks() {
     dueInDays: t.dueInDays,
   }));
 
-  const MAX_VISIBLE = 4;
-  const TASK_ITEM_ESTIMATED = 125; // px per task row including gaps/padding (approx)
+  const MAX_VISIBLE = 3;
+  const TASK_ITEM_ESTIMATED = 95; // px per task row including gaps/padding (approx)
   const tasksBodyStyle: React.CSSProperties =
     tasks.length > MAX_VISIBLE
       ? { minHeight: 0, maxHeight: `${MAX_VISIBLE * TASK_ITEM_ESTIMATED}px`, overflowY: "auto" }
       : { minHeight: 0 };
 
   return (
-    <div className="card mt-6 md:mt-0">
+    <div className="card mt-6 md:mt-0 md:h-[420px]">
       <div className="card-inner">
         <div>
           <h3 className="text-lg font-semibold mb-3">Task</h3>
         </div>
 
-        <div className="card-body flex-1 flex flex-col gap-4" style={{ ...tasksBodyStyle, minHeight: 0 }}>
+        <div className="card-body flex-1 flex flex-col gap-4 max-h-[530px] overflow-y-auto md:h-[500px] md:overflow-y-auto" style={{ minHeight: 0 }}>
         {tasks.map((task, i) => {
             const pill =
               pillStyles[task.category] ||
