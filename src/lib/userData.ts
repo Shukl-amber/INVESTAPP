@@ -82,9 +82,9 @@ const userData = {
       "seminars": 3
     },
     "milestoneLogoUrlMap": {
-      "Campus Newbie": "/icons/student.svg",
-      "Campus Expert": "/icons/lightning.svg",
-      "Campus Torchbearer": "/icons/fire.svg"
+      "Campus Newbie": "/icons/Student.svg",
+      "Campus Expert": "/icons/Lightning.svg",
+      "Campus Torchbearer": "/icons/Fire.svg"
     }
   }
 };
