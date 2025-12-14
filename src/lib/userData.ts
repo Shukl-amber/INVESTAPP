@@ -37,6 +37,17 @@ const userData = {
       "description": "50 Referrals",
       "dueInDays": 12,
       "status": "pending"
+    },{
+      "category": "Learn and Grow",
+      "description": "Complete Financial Literacy Course",
+      "dueInDays": 10,
+      "status": "pending"
+    },
+    {
+      "category": "Social Buzz",
+      "description": "Create an Instagram reel",
+      "dueInDays": 12,
+      "status": "pending"
     },
     {
       "category": "Recruit & Rise",

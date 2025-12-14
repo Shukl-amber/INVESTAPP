@@ -26,6 +26,20 @@ const leaderboard = [
     points: 8200,
     avatar: "/avatar/avatar1.webp",
   },
+  { rank: 6, name: "Priya Jain", points: 8334, avatar: "/avatar/avatar1.webp" },
+  {
+    rank: 7,
+    name: "Test Man",
+    points: 8234,
+    avatar: "/avatar/avatar2.webp",
+  },
+  { rank: 8, name: "Test Man", points: 8334, avatar: "/avatar/avatar3.webp" },
+  {
+    rank: 9,
+    name: "Test Woman",
+    points: 8200,
+    avatar: "/avatar/avatar1.webp",
+  },
   // ...add more users as needed
 ];
 
@@ -61,26 +75,35 @@ export default function ProfileLeaderboard() {
     }
   };
 
+  const MAX_VISIBLE = 4;
+  const LEADER_ITEM_EST = 70; // px per leaderboard row including gap/padding (approx)
+  const listBodyStyle: React.CSSProperties =
+    leaderboard.length > MAX_VISIBLE
+      ? { minHeight: 0, maxHeight: `${MAX_VISIBLE * LEADER_ITEM_EST}px`, overflowY: "auto" }
+      : { minHeight: 0 };
+
   return (
-    <section className="bg-white rounded-2xl p-4 w-full max-w-md mx-auto shadow-md">
-      <div className="flex justify-between items-center mb-3">
-        <h2 className="font-bold text-lg text-[#222]">Leaderboard</h2>
-        <button
-          className="border border-[#2C2E8C] text-[#2C2E8C] rounded-full px-4 py-1 text-xs font-semibold hover:bg-[#f0f2ff] transition"
-          onClick={handleViewPosition}
-        >
-          View Your Position
-        </button>
-      </div>
-      {/* Podium Card with BG */}
-      <div
-        className="bg-[url('/home/leaderboard-bg.webp')] bg-cover bg-center rounded-xl px-2 pt-6 pb-2 flex flex-col items-center mb-4"
-        style={{ minHeight: "170px" }}
-      >
-        <div
-          className="relative w-full flex items-end justify-center h-[180px] gap-6"
-          style={{ marginTop: 0, paddingBottom: 0 }}
-        >
+    <section className="card">
+      <div className="card-inner">
+        <div>
+          <div className="flex justify-between items-center mb-3">
+            <h2 className="font-bold text-lg text-[#222]">Leaderboard</h2>
+            <button
+              className="border border-[#2C2E8C] text-[#2C2E8C] rounded-full px-4 py-1 text-xs font-semibold hover:bg-[#f0f2ff] transition"
+              onClick={handleViewPosition}
+            >
+              View Your Position
+            </button>
+          </div>
+          {/* Podium Card with BG */}
+          <div
+            className="bg-[url('/home/leaderboard-bg.webp')] bg-cover bg-center rounded-xl px-2 pt-6 pb-2 flex flex-col items-center mb-4"
+            style={{ minHeight: "170px" }}
+          >
+            <div
+              className="relative w-full flex items-end justify-center h-[180px] gap-6"
+              style={{ marginTop: 0, paddingBottom: 0 }}
+            >
           {podium.map((user, idx) => {
             // Classic fixed heights for podium
             let barHeight = 110,
@@ -217,47 +240,44 @@ export default function ProfileLeaderboard() {
           })}
         </div>
       </div>
-      {/* Leaderboard List Card - scrollable if more than 3 entries */}
-      <div
-        className={"bg-white rounded-xl p-3 shadow-sm"}
-        style={
-          leaderboard.length > 3
-            ? { maxHeight: "160px", overflowY: "auto" }
-            : {}
-        }
-      >
-        {leaderboard.map((user) => (
-          <div
-            key={user.rank}
-            ref={user.name === userData.name ? userRowRef : undefined}
-            className={`flex items-center justify-between py-2 px-2 rounded-lg mb-1 ${
-              user.name === userData.name
-                ? "bg-[#e6edff] border-2 border-[#2C2E8C]"
-                : ""
-            }`}
-          >
-            <div className="flex items-center gap-3">
-              <span className="text-[#24218F] text-base">#{user.rank}</span>
-              <Image
-                src={user.avatar}
-                alt={user.name}
-                width={28}
-                height={28}
-                className="rounded-full border-2 border-white object-cover"
-              />
-              <span className="font-semibold text-base text-[#222]">
-                {user.name}
-              </span>
+        {/* Leaderboard List Card - body fills card and scrolls after 4 entries */}
+        <div
+          className={"card-body flex-1 bg-white rounded-xl p-3 shadow-sm"}
+          style={{ ...listBodyStyle, minHeight: 0 }}
+        >
+            {leaderboard.map((user) => (
+            <div
+              key={user.rank}
+              ref={user.name === userData.name ? userRowRef : undefined}
+              className={`flex items-center justify-between py-2 px-2 rounded-lg mb-1 ${
+                user.name === userData.name
+                  ? "bg-[#e6edff] border-2 border-[#2C2E8C]"
+                  : ""
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <span className="text-[#24218F] text-base">#{user.rank}</span>
+                <Image
+                  src={user.avatar}
+                  alt={user.name}
+                  width={28}
+                  height={28}
+                  className="rounded-full border-2 border-white object-cover"
+                />
+                <span className="font-semibold text-base text-[#222]">
+                  {user.name}
+                </span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Image src="/icons/money.svg" alt="coin" width={18} height={18} />
+                <span className="font-bold text-[#2C2E8C] text-base">
+                  {user.points.toLocaleString()}
+                </span>
+              </div>
             </div>
-            <div className="flex items-center gap-1">
-              <Image src="/icons/money.svg" alt="coin" width={18} height={18} />
-              <span className="font-bold text-[#2C2E8C] text-base">
-                {user.points.toLocaleString()}
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </div></div>  
     </section>
   );
 }

@@ -55,48 +55,46 @@ export default function ReferralTracking() {
   ];
 
   return (
-    <section className="bg-white rounded-2xl p-4 w-full max-w-md mx-auto shadow-md mt-6">
-      <h2 className="font-bold text-lg text-[#222] mb-3">Referral Tracking</h2>
+    <section className="card mt-6 md:mt-0">
+      <div className="card-inner">
+        <div>
+          <h2 className="font-bold text-lg text-[#222] mb-3">Referral Tracking</h2>
+        </div>
 
-      <div>
-        {referrals.length ? (
-          referrals.map((r, idx) => (
-            <div
-              key={idx}
-              className="flex items-center justify-between bg-white rounded-xl py-3 px-4 mb-3 shadow-sm"
-            >
-              <div className="flex items-center gap-3">
-                <Image
-                  src={avatarPool[idx % avatarPool.length]}
-                  alt={r.name}
-                  width={44}
-                  height={44}
-                  className="object-cover rounded-full"
-                />
-                <div>
-                  <div className="text-sm font-semibold text-gray-900">
-                    {r.name}
-                  </div>
-                  <div className="text-xs text-black mt-1">
-                    {formatSentDate(r.date)}
+        <div>
+          {referrals.length ? (
+            referrals.map((r, idx) => (
+              <div
+                key={idx}
+                className="flex items-center justify-between bg-white rounded-xl py-3 px-4 mb-3 shadow-sm"
+              >
+                <div className="flex items-center gap-3">
+                  <Image
+                    src={avatarPool[idx % avatarPool.length]}
+                    alt={r.name}
+                    width={44}
+                    height={44}
+                    className="object-cover rounded-full"
+                  />
+                  <div>
+                    <div className="text-sm font-semibold text-gray-900">{r.name}</div>
+                    <div className="text-xs text-black mt-1">{formatSentDate(r.date)}</div>
                   </div>
                 </div>
-              </div>
 
-              <div>
-                <StatusBadge status={r.status} />
+                <div>
+                  <StatusBadge status={r.status} />
+                </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <div className="text-sm text-gray-500">No referrals yet.</div>
-        )}
-      </div>
+            ))
+          ) : (
+            <div className="text-sm text-gray-500">No referrals yet.</div>
+          )}
+        </div>
 
-      <div className="text-center mt-2">
-        <a href="#" className="text-sm underline text-gray-800">
-          View All
-        </a>
+        <div className="text-center mt-2">
+          <a href="#" className="text-sm underline text-gray-800">View All</a>
+        </div>
       </div>
     </section>
   );

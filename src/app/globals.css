@@ -64,3 +64,82 @@ html, body, main, #__next {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* Design tokens and shared layout utilities for dashboard cards */
+:root{
+  --space-1: 6px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 20px;
+  --space-5: 28px;
+  --space-6: 40px;
+  --card-radius: 12px;
+  --card-padding: var(--space-4);
+  --card-bg: #ffffff;
+  --container-max: 1280px;
+}
+
+/* Dashboard grid that composes panels */
+.dashboard-grid{
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+/* Shared card used by all dashboard panels */
+.card{
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  box-shadow: 0 6px 18px rgba(15,15,15,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+  overflow: hidden; /* ensure inner scrollbars are clipped to rounded card */
+}
+
+/* Ensure cards always stretch to fill their grid cell for even tops/bottoms */
+.card{
+  height: 100%;
+}
+
+/* Inner layout for cards to allow header/body/footer sizing */
+.card-inner{
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--space-3);
+}
+
+/* Allow the middle row (card body) to be scrollable and to shrink correctly inside grid/flex layouts */
+.card-inner > .card-body{
+  min-height: 0; /* allows the 1fr row to shrink inside flex containers */
+  overflow-y: auto;
+}
+
+/* Utility to stabilize images/illustrations */
+.figure{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: calc(var(--card-radius) - 4px);
+}
+
+/* Fluid type helpers (used by components) */
+h1, h2, h3, h4{ margin: 0 }
+h2{ font-size: clamp(1rem, 1.6vw + 0.4rem, 1.4rem) }
+p { font-size: clamp(0.9rem, 1.2vw + 0.2rem, 1rem) }
+
+/* Milestone tweaks: avoid clipping and reduce desktop font size slightly */
+.milestone-item-label{
+  white-space: normal;
+  word-break: break-word;
+}
+
+@media (min-width: 768px){
+  .milestone-item-label{
+    font-size: 0.95rem; /* slightly smaller on desktop/tablet */
+  }
+}
