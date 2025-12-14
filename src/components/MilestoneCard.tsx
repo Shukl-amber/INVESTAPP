@@ -7,21 +7,33 @@ const { milestones } = userData;
     return (
       <section className="rounded-2xl bg-white p-6 shadow-md w-full max-w-md mx-auto">
         <h2 className="text-2xl mb-6">Milestone</h2>
-        <div className="flex justify-between mb-6 gap-3">
+        <div className="grid grid-cols-3 gap-3 mb-6">
           {milestones.levels.map((level) => {
             const isActive = level === milestones.currentLevel;
             const iconUrl = (milestones as any).milestoneLogoUrlMap?.[level] ?? "/icons/Student.svg";
             return (
               <div
                 key={level}
-                className={`flex flex-col items-center flex-1 px-5 py-5 rounded-2xl cursor-pointer transition-colors duration-150 ${
+                className={`flex flex-col items-center px-3 py-4 rounded-2xl cursor-pointer transition-colors duration-150 overflow-hidden min-w-0 ${
                   isActive ? "bg-[#221B7A] text-white" : "bg-[#F6F6FB] text-[#221B7A]"
                 }`}
                 aria-selected={isActive}
                 role="tab"
               >
-                <img src={iconUrl} alt={level + " icon"} className="w-12 h-12 mb-3" draggable={false} />
-                <span className="text-base md:text-lg font-medium text-center leading-snug">{level}</span>
+                <img src={iconUrl} alt={level + " icon"} className="w-10 h-10 md:w-12 md:h-12 mb-3 flex-shrink-0" draggable={false} />
+                {(() => {
+                  const parts = level.split(" ");
+                  const first = parts[0] ?? level;
+                  const rest = parts.slice(1).join(" ");
+                  return (
+                    <span className="text-sm md:text-base font-normal text-center w-full block">
+                      <span className="block md:inline leading-tight">{first}</span>
+                      {rest ? (
+                        <span className="block md:inline leading-tight mt-0">{rest}</span>
+                      ) : null}
+                    </span>
+                  );
+                })()}
               </div>
             );
           })}

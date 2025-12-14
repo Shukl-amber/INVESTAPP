@@ -58,7 +58,7 @@ export default function ProfileFooter({ data }: { data?: HelpData }) {
   };
 
   return (
-    <section className="relative rounded-2xl bg-white p-6 shadow-md w-full max-w-md mx-auto overflow-hidden">
+    <section className="relative rounded-2xl bg-white p-6 shadow-md w-full overflow-hidden border border-gray-100 mb-6">
       {/* Absolute SVG in bottom-left touching the card edge */}
       {illustrationUrl ? (
         <div className="absolute left-0 bottom-0 w-40 h-28 rounded-bl-2xl overflow-hidden flex items-end">
