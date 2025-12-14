@@ -4,10 +4,10 @@ import userData from "../lib/userData";
 
 export default function ProfileHero() {
   return (
-    <div className="flex flex-col items-center w-full max-w-md mx-auto rounded-3xl shadow-lg overflow-hidden mt-8 bg-white">
+    <div className="flex flex-col items-center w-full max-w-md mx-auto rounded-3xl shadow-lg overflow-hidden mt-8 bg-white pt-4">
       {/* Top background section with padding and background image */}
       <div
-        className="relative w-[92%] mx-auto flex items-end justify-center bg-white"
+        className="relative w-[92%] mx-auto flex items-end justify-center bg-white "
         style={{
           height: '40%',
           minHeight: '160px',
@@ -15,7 +15,7 @@ export default function ProfileHero() {
           backgroundImage: 'url(/home/profile-bg.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          paddingTop: '1.5rem',
+          paddingTop: '2rem',
           paddingLeft: '1.5rem',
           paddingRight: '1.5rem',
           borderRadius: '1.5rem',
@@ -26,7 +26,7 @@ export default function ProfileHero() {
           Edit Profile
         </button>
         {/* Avatar and Title Overlay */}
-        <div className="absolute left-1/2 -translate-x-1/2 translate-y-1/2 flex flex-col items-center">
+        <div className="absolute left-1/2 -translate-x-1/2 translate-y-1/2 flex flex-col items-center" >
           <div className="relative flex items-center justify-center">
             {/* Darker gold ring */}
             <div className="w-28 h-28 rounded-full flex items-center justify-center" style={{ backgroundColor: '#FFCA56' }}>

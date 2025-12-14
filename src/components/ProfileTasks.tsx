@@ -26,7 +26,7 @@ export default function ProfileTasks() {
     <div className="w-full max-w-md mx-auto mt-6 bg-white rounded-3xl p-4" style={{ boxShadow: '0 2px 10px #F3F3F3' }}>
       <h3 className="text-lg font-semibold mb-3">Task</h3>
 
-      <div className="flex flex-col gap-4" style={{ maxHeight: '310px', overflowY: 'auto' }}>
+      <div className="flex flex-col gap-4">
         {tasks.map((task, i) => {
           const pill = pillStyles[task.category] || "border-gray-200 text-gray-700 bg-white";
           return (

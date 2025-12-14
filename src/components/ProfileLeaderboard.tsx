@@ -219,7 +219,7 @@ export default function ProfileLeaderboard() {
       </div>
       {/* Leaderboard List Card - scrollable if more than 3 entries */}
       <div
-        className="bg-white rounded-xl p-3 shadow-sm"
+        className={"bg-white rounded-xl p-3 shadow-sm"}
         style={
           leaderboard.length > 3
             ? { maxHeight: "160px", overflowY: "auto" }
